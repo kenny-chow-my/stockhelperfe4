@@ -1,12 +1,11 @@
 import * as React from 'react';
-import {ReactDataGrid} from 'react-data-grid';
 import {connect} from 'react-redux';
 import {getUserThings} from '../../redux/modules/userThings/index';
 import {Button} from 'react-bootstrap';
-import {IUserThing} from '../../models/userThing';
+import * as Table from 'reactabular-table';
 
 const mapStateToProps = (state) => {
-  return { userThing: state.userThing };
+  return {userThing: state.userThing};
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -20,77 +19,71 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 class UserThings extends React.Component<any, any> {
 
-   public render() {
-    const userThing: IUserThing = this.props.userThing;
+  public render() {
+    const rows = [
+      {id: '1', title: 'one', description: 'sometext', selectedLabels: 'str1, str2', reminder: ''},
+      {id: '2', title: 'two', description: 'sometext2', selectedLabels: 'str3, str4', reminder: ''},
+    ];
 
     const columns = [
       {
-        key: 'id',
-        name: 'ID',
-        locked: true,
+        property: 'id',
+        header: {
+          label: 'ID',
+          transforms: [
+            (label) => ({
+              onClick: () => alert(`clicked ${label}`),
+            }),
+          ],
+        },
       },
       {
-        key: 'title',
-        name: 'Title',
-        width: 200,
-        sortable: true,
+        property: 'title',
+        header: {
+          label: 'Title',
+        },
       },
       {
-        key: 'thing.thumbnailPngBase64',
-        name: 'Thumbnail',
-        width: 200,
+        property: 'thing.thumbnailPngBase64',
+        header: {
+          label: 'Thumbnail',
+        },
       },
       {
-        key: 'selectedLabels',
-        name: 'Labels',
-        width: 200,
-        sortable: true,
+        property: 'selectedLabels',
+        header: {
+          label: 'Labels',
+        },
       },
       {
-        key: 'description',
-        name: 'Description',
-        width: 200,
-        sortable: true,
+        property: 'description',
+        header: {
+          label: 'Description',
+        },
       },
       {
-        key: 'reminder',
-        name: 'Alarm',
-        width: 200,
-        sortable: true,
+        property: 'reminder',
+        header: {
+          label: 'Reminder',
+        },
       },
     ];
 
-    const handleGridSort = (sortColumn, sortDirection) => {
-      const comparer = (a, b) => {
-        if (sortDirection === 'ASC') {
-          return (a[sortColumn] > b[sortColumn]) ? 1 : -1;
-        } else if (sortDirection === 'DESC') {
-          return (a[sortColumn] < b[sortColumn]) ? 1 : -1;
-        }
-      };
-      const rows = sortDirection === 'NONE' ? this.state.originalRows.slice(0) : this.state.rows.sort(comparer);
-
-      this.setState({ rows });
-    };
-
-    const  rowGetter = (i) => {
-       console.log('getting row: ' + i);
-       return this.props.userThing;
-     };
-
     return (
       <div>
-        <ReactDataGrid
-          onGridSort={handleGridSort}
+
+        <Table.Provider
+          className="pure-table pure-table-striped"
           columns={columns}
-          rowGetter={rowGetter}
-          rowsCount={1}
-          minHeight={500} />);
+        >
+          <Table.Header />
+
+          <Table.Body rows={rows} rowKey="id"/>
+        </Table.Provider>
+
         <hr/>
-        <p>
-          {userThing.title} | {userThing.description}
-        </p>
-        <Button bsStyle="">Click Me!</Button>
+
+        <Button bsStyle="success">Load user Things!</Button>
       </div>
 
     );
@@ -98,4 +91,4 @@ class UserThings extends React.Component<any, any> {
 
 }
 
-export { UserThings }
+export {UserThings}

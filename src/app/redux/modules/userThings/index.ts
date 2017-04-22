@@ -2,17 +2,18 @@ import {IUserThing, IUserThingsAction} from '../../../models/userThing';
 export const UPDATE_USERTHING: string = 'UPDATE_USERTHING';
 export const GET_USERTHINGS: string = 'GET_USERTHINGS';
 
-export function userThingReducer(state, action) {
-  switch (action.type) {
-    case UPDATE_USERTHING:
+/** Initial State */
+const initialState: IUserThing = {
+ id: '1', title: 'one', description: 'sometext', selectedLabels: 'str1, str2', reminder: '',
+};
 
-      return state;
+export function userThingReducer(state = initialState, action) {
+  switch (action.type) {
     case GET_USERTHINGS:
       return Object.assign({}, state, action.payload);
     default:
       return state;
   }
-
 }
 
 /** Action Creator: Decrements the Counter */
