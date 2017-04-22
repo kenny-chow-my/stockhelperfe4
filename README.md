@@ -1,23 +1,8 @@
-# Vortigern
-[![Build Status](https://travis-ci.org/barbar/vortigern.svg?branch=master)](https://travis-ci.org/barbar/vortigern)
-[![Dependency Status](https://david-dm.org/barbar/vortigern.svg)]()
-[![devDependency Status](https://david-dm.org/barbar/vortigern/dev-status.svg)]()
-[![Code Climate](https://codeclimate.com/github/barbar/vortigern/badges/gpa.svg)](https://codeclimate.com/github/barbar/vortigern)
-[![GitHub issues](https://img.shields.io/github/issues/barbar/vortigern.svg)](https://github.com/barbar/vortigern/issues)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/barbar/vortigern/develop/LICENSE)
-___
-
-<img src="https://barbaruploads.s3.amazonaws.com/bicoz/vortigern.png" width="100%" />
-
-**Vortigern** is our opinionated boilerplate for crafting universal web applications by using modern technologies like TypeScript, React and Redux.
-
-[![TypeScript](https://barbaruploads.s3.amazonaws.com/bicoz/typescript.png)](https://www.typescriptlang.org/) 
-[![React](https://barbaruploads.s3.amazonaws.com/bicoz/react.png)](https://github.com/facebook/react) 
-[![Redux](https://barbaruploads.s3.amazonaws.com/bicoz/redux.png)](https://github.com/reactjs/redux)
-
+#9Things StockHelper
+This is the front end of StockHelper
 
 ## Libraries
-Vortigern uses the following libraries and tools:
+StockHelper uses the following libraries and tools:
 
 #### Core
 - [TypeScript](https://www.typescriptlang.org/)
@@ -119,16 +104,6 @@ Vortigern uses the following libraries and tools:
 └── typings.json                # Typings package configuration.
 ```
 
-## Installation
-
-You can clone from this repository or [install the latest version](https://github.com/barbar/vortigern/releases) as a zip file or a tarball. 
-
-```bash
-$ git clone https://github.com/barbar/vortigern
-$ cd vortigern
-$ npm install
-```
-
 ## Usage
 
 All commands defaults to development environment. You can set `NODE_ENV` to `production` or use the shortcuts below.
@@ -165,19 +140,10 @@ $ typings install <package> --save
 ```
 
 ## Credits
-
+This project uses Vortigern by ## [Barbar Startup Factory](https://www.barbar.com.tr/?ref=vortigern)
 Vortigern is released under the [MIT license](LICENSE). 
-
-The image in this README belongs to [hhvferry.com](http://www.hhvferry.com/vortscrap.html).
-
 ___
 
-## [Barbar Startup Factory](https://www.barbar.com.tr/?ref=vortigern)
 
-<a target="_blank" href="https://barbar.digital/?ref=vortigern-barbar-logo"><img src="https://barbaruploads.s3.amazonaws.com/bicoz/logo2x.png" height="55px" /></a>
 
-We help startups start and stay started by helping them plan, strategize, fund and execute their vision. 
 
-You can contact us at [hey@barbar.digital](mailto:hey@barbar.digital)
-
-Be sure to check out available [jobs at Barbar](https://github.com/barbar/hr).
