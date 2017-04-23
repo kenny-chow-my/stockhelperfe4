@@ -11,11 +11,15 @@ const { ReduxAsyncConnect } = require('redux-connect');
 import { configureStore } from './app/redux/store';
 import 'isomorphic-fetch';
 import routes from './app/routes';
+import { getUserThings } from './app/redux/modules/userThings';
 
 const store = configureStore(
   browserHistory,
   window.__INITIAL_STATE__,
 );
+
+store.dispatch(getUserThings());
+
 const history = syncHistoryWithStore(browserHistory, store);
 const connectedCmp = (props) => <ReduxAsyncConnect {...props} />;
 

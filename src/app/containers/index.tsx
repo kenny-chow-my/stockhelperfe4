@@ -5,4 +5,4 @@ export { Home } from './Home';
 export { About } from './About';
 export { Counter } from './Counter';
 export { Stars } from './Stars';
-export { UserThings } from './ListThings'
+export { UserThings } from './Things/ThingsPage'
