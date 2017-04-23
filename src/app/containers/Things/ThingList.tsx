@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {Button, Table} from 'react-bootstrap';
+import {Table} from 'react-bootstrap';
 import ThingRow from './ThingRow';
 
 class ThingList extends React.Component<any, {}> {
   public render() {
-    const { things } = this.props;
+    const { userThings } = this.props;
+    console.log('things => ', userThings.userThingsList);
     return (
       <div>
         <Table striped={true} bordered={true} condensed={true} hover={true}>
@@ -18,7 +19,7 @@ class ThingList extends React.Component<any, {}> {
           </tr>
           </thead>
           <tbody>
-          {things.userThings.map( (thing) => <ThingRow key={thing.id} thing={thing}/>)}
+          {userThings.userThingsList.map( (thing) => <ThingRow key={thing.id} thing={thing}/>)}
           </tbody>
         </Table>
         <hr/>

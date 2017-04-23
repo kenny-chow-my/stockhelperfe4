@@ -3,6 +3,7 @@ import { Button, Jumbotron } from 'react-bootstrap';
 const style = require('./style.css');
 
 class Home extends React.Component<any, any> {
+
   public render() {
     return (
       <Jumbotron>

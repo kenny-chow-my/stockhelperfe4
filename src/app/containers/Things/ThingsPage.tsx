@@ -35,7 +35,7 @@ class UserThings extends React.Component<any, any> {
     const close = () => {
       this.setState({ show: false});
     };
-
+    console.log( 'UserThings in Page: ', this.props.userThings);
     return (
       <div>
       <h1>
@@ -63,7 +63,7 @@ class UserThings extends React.Component<any, any> {
                 onClick={onGetUserThingsClick}>Add Course</Button>
         <br/>
         <hr/>
-        <ThingList things={this.props.userThings} />
+        <ThingList userThings={this.props.userThings} />
       </div>
     );
   }
