@@ -47,6 +47,7 @@ class Html extends React.Component<IHtmlProps, {}> {
 
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css"/>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
         </head>
         <body>
           <main id="app" dangerouslySetInnerHTML={{ __html: markup }} />

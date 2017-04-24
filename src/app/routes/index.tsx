@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IndexRoute, Route } from 'react-router';
-import { App, Home, About, Counter, Stars, UserThings } from 'containers';
+import { App, Home, About, Counter, Stars, UserThingsPage } from 'containers';
 
 export default (
   <Route path="/" component={App}>
@@ -8,6 +8,6 @@ export default (
     <Route path="about" component={About} />
     <Route path="counter" component={Counter} />
     <Route path="stars" component={Stars} />
-    <Route path="userthings" component={UserThings} />
+    <Route path="userthings" component={UserThingsPage} />
   </Route>
 );

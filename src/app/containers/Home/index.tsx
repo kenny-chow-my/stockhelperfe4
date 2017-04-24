@@ -9,7 +9,7 @@ class Home extends React.Component<any, any> {
       <Jumbotron>
         <div className={style.Home}>
           <p>Welcome to Thing9!</p>
-          <Button bsStyle="info">Click Me!</Button>
+          <Button bsStyle="info"><i className="fa-li fa fa-spinner fa-spin"/>Click Me!</Button>
         </div>
       </Jumbotron>
     );
