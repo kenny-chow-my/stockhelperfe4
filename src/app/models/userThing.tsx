@@ -6,7 +6,14 @@ export interface IUserThing {
   reminder: string;
 }
 
+export interface IError {
+  message: string;
+  code: number;
+}
+
 export interface IUserThingsAction {
   type: string;
-  payload: [IUserThing];
+  payload?: [IUserThing];
+  error?: IError;
+
 }
