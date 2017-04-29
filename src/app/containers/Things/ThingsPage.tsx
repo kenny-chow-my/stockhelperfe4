@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {getUserThings} from '../../redux/modules/userThings/index';
+import {getUserThings, addUserThings} from '../../redux/modules/userThings/index';
 import ThingList from './ThingList';
 import {Button, ControlLabel, Modal, Thumbnail} from 'react-bootstrap';
 const style = require('./style.css');
@@ -17,6 +17,10 @@ function mapDispatchToProps(dispatch) {
       console.log('in the dispatch of onGetUserThingsClick');
       dispatch(getUserThings());
     },
+    onAddThingsClick: (imageFile) => {
+      console.log('in the dispatch of onGetUserThingsClick');
+      dispatch(addUserThings(imageFile));
+    },
   };
 };
 
@@ -29,7 +33,12 @@ class UserThings extends React.Component<any, any> {
 
   public render() {
     const onAddThingClick = () => {
-      console.log('Uploading file:', this.props.file);
+      console.log('Uploading file:', this.state.AddThingsState);
+      const imageFile = {filename: this.state.AddThingsState.file.name,
+        imageDataBase64: this.state.AddThingsState.imagePreviewUrl,
+        contentType: this.state.AddThingsState.file.type};
+      this.props.onAddThingsClick(imageFile);
+      // this.setState({AddThingsState: { show: false}});
     };
 
     const close = () => {
@@ -57,7 +66,7 @@ class UserThings extends React.Component<any, any> {
       this.props.onGetUserThingsClick();
     };
 
-    const { userThings, loading, error } = this.props.userThings.userThingsList;
+    const { userThingsList, loading, error } = this.props.userThings;
 
     const showInfo = () => {
       if (loading) {
@@ -97,7 +106,7 @@ class UserThings extends React.Component<any, any> {
         {showInfo()}
         <Button className="fa fa-refresh" bsStyle="primary"
                 onClick={onRefreshClick}/>
-        <ThingList userThings={userThings} />
+        <ThingList userThings={userThingsList} />
 
         <form>
           <ControlLabel>Add a Thing</ControlLabel>
