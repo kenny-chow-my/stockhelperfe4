@@ -48,7 +48,7 @@ export function userThingReducer(state = initialState, action) {
 }
 
 /** Action Creator: Handles User Things */
-const ROOT_URL = 'http://127.0.0.1:8080/api/v1/things';
+const ROOT_URL = 'https://ninethingstockhelper.herokuapp.com/api/v1/things';
 
 function actionErrorHelper(error): IError {
   const actionError: IError = {message: 'Unspecified error', code: 900 };

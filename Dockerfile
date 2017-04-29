@@ -1,12 +1,13 @@
 FROM mhart/alpine-node:latest
 
-MAINTAINER Kenny Chow 
+MAINTAINER Kenny Chow
 
 WORKDIR /app
 ADD . .
-
+ENV PORT 80
+ENV NODE_ENV production
 RUN npm install
 
-EXPOSE 8889
+EXPOSE 80
 
 CMD ["npm", "run", "start:prod"]

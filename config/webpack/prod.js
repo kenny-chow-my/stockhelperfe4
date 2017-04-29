@@ -25,6 +25,7 @@ var config = {
       'react-helmet',
       'react-redux',
       'react-router-redux',
+      'react-bootstrap',
       'redux',
       'redux-connect',
       'redux-thunk'
