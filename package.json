@@ -5,7 +5,7 @@
   "main": "build/server.js",
   "engines": {
     "node": "6.10.2"
-  }
+  },
   "scripts": {
     "clean": "rimraf build",
     "prebuild": "npm run clean",
