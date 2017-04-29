@@ -3,6 +3,9 @@
   "version": "0.1.1",
   "description": "Manage your things",
   "main": "build/server.js",
+  "engines": {
+    "node": "6.10.2"
+  }
   "scripts": {
     "clean": "rimraf build",
     "prebuild": "npm run clean",
@@ -97,12 +100,7 @@
     "tslint-loader": "^3.3.0",
     "tslint-react": "^2.3.0",
     "typescript": "^2.1.5",
-    "url-loader": "^0.5.7",
-    "webpack": "^2.2.0",
-    "webpack-dev-middleware": "^1.9.0",
-    "webpack-dev-server": "^2.2.0",
-    "webpack-hot-middleware": "^2.15.0",
-    "webpack-manifest-plugin": "^1.1.0"
+    "url-loader": "^0.5.7"
   },
   "dependencies": {
     "axios": "^0.16.1",
@@ -127,6 +125,11 @@
     "redux-connect": "^5.0.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.2.0",
-    "serve-favicon": "^2.3.2"
+    "serve-favicon": "^2.3.2",
+    "webpack": "^2.2.0",
+    "webpack-dev-middleware": "^1.9.0",
+    "webpack-dev-server": "^2.2.0",
+    "webpack-hot-middleware": "^2.15.0",
+    "webpack-manifest-plugin": "^1.1.0"
   }
 }
