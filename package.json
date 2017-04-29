@@ -18,7 +18,7 @@
     "test": "karma start config/test/karma.conf.js",
     "lint": "tslint \"src/**/**.ts*\""
   },
-  "author": "Kenny Chow <kenny@chow.my>",
+  "author": "Kenny Chow  <kenny@chow.my>",
   "homepage": "https://9thing.zyden.com",
   "repository": {
     "type": "git",
