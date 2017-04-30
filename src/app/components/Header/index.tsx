@@ -31,9 +31,6 @@ class Header extends React.Component<any, any> {
             <LinkContainer to="/about">
             <NavItem>About</NavItem>
             </LinkContainer>
-            <LinkContainer to="/counter">
-            <NavItem>Counter</NavItem>
-            </LinkContainer>
             <LinkContainer to="/userthings">
             <NavItem>UserThings</NavItem>
             </LinkContainer>

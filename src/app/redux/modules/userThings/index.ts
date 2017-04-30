@@ -18,7 +18,7 @@ export const ADD_USERTHINGS_FAILURE: string = 'ADD_USERTHINGS_FAILURE';
 // ];
 
 /** Initial State */
-const initialState = {userThingsList: [], error: null, loading: false};
+const initialState = {userThingsList: [], error: null, loading: false, submitting: false};
 
 export function userThingReducer(state = initialState, action) {
   switch (action.type) {
@@ -33,14 +33,14 @@ export function userThingReducer(state = initialState, action) {
       return { ...state, userThingsList: [], error: null, loading: false};
 
     case ADD_USERTHINGS_LOADING: //
-       return { ...state, loading: true};
+       return { ...state, error: null, loading: true, submitting: true};
     case ADD_USERTHINGS_SUCCESS: //
       const addUserThingsSuccess = state.userThingsList.slice();
       addUserThingsSuccess.push(action.payload);
       console.log('Add User Things Success: ', addUserThingsSuccess);
-      return { ...state, userThingsList: addUserThingsSuccess, loading: false};
+      return { ...state, userThingsList: addUserThingsSuccess, error: null, loading: false, submitting: false};
     case ADD_USERTHINGS_FAILURE: // return error and make loading = false
-      return { ...state, error: action.error, loading: false};
+      return { ...state, error: action.error, loading: false, submitting: false};
 
     default:
       return state;
@@ -55,8 +55,8 @@ function actionErrorHelper(error): IError {
   if (error.response) {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx
-    console.log('Error Headers: ', error.response.headers);
-    actionError.message = error.response.data;
+    console.error('Error when making AXIOS call: ', error.response.data.message);
+    actionError.message = error.response.data.message;
     actionError.code = error.response.status;
   } else if (error.request) {
     // The request was made but no response was received

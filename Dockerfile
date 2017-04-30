@@ -5,6 +5,7 @@ MAINTAINER Kenny Chow
 WORKDIR /app
 ADD . .
 ENV PORT 80
+ENV HOST 0.0.0.0
 ENV NODE_ENV production
 RUN npm install
 
