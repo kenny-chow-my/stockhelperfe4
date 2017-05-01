@@ -6,3 +6,4 @@ export { About } from './About';
 export { Counter } from './Counter';
 export { Stars } from './Stars';
 export { UserThingsPage } from './Things/ThingsPage'
+export { ManageThingsPage } from './Things/ManageThingsPage'

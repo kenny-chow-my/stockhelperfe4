@@ -1,5 +1,6 @@
 import {IError, IUserThingsAction} from '../../../models/userThing';
 import axios from 'axios';
+import {routerActions} from 'react-router-redux';
 
 export const UPDATE_USERTHING: string = 'UPDATE_USERTHING';
 
@@ -136,7 +137,9 @@ export function addUserThings(imageFile) {
       data: imageFile,
     }).then( (response) => {
       console.log('Response fetched from ' + ROOT_URL, response);
+
       dispatch(addUserThingsSuccess(response.data));
+      dispatch(routerActions.push('/managethings'));
     })
       .catch( (error) => {
         dispatch(addUserThingsFailure(error));
@@ -146,6 +149,7 @@ export function addUserThings(imageFile) {
 
 export function addUserThingsSuccess(newUserThing): IUserThingsAction {
   console.log('Called addUserThingsSuccess');
+
   return {
     type: ADD_USERTHINGS_SUCCESS,
     payload: newUserThing,

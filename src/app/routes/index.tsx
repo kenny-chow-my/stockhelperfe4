@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IndexRoute, Route } from 'react-router';
-import { App, Home, About, Counter, Stars, UserThingsPage } from 'containers';
+import { App, Home, About, Counter, Stars, UserThingsPage, ManageThingsPage } from 'containers';
 
 export default (
   <Route path="/" component={App}>
@@ -9,5 +9,6 @@ export default (
     <Route path="counter" component={Counter} />
     <Route path="stars" component={Stars} />
     <Route path="userthings" component={UserThingsPage} />
+    <Route path="managethings" component={ManageThingsPage} />
   </Route>
 );

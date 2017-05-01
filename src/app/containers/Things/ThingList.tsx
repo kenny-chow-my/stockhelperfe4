@@ -8,7 +8,7 @@ class ThingList extends React.Component<any, {}> {
     console.log('things => ', userThings);
     return (
       <div>
-        <Table striped={true} bordered={true} condensed={true} hover={true}>
+        <Table width="90%" striped={true} bordered={true} condensed={true} hover={true}>
           <thead>
           <tr>
             <th>ID</th>

@@ -1,7 +1,11 @@
+export interface ILabelArray {
+  [index: number]: string;
+}
+
 export interface IUserThing {
   id: string;
   title: string;
-  selectedLabels: string;
+  selectedLabels: [ILabelArray];
   description: string;
   reminder: string;
 }
