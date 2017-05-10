@@ -10,5 +10,6 @@ export default (
     <Route path="stars" component={Stars} />
     <Route path="userthings" component={UserThingsPage} />
     <Route path="managethings" component={ManageThingsPage} />
+    <Route path="managethings/:id" component={ManageThingsPage} />
   </Route>
 );

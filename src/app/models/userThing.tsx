@@ -8,6 +8,7 @@ export interface IUserThing {
   selectedLabels: [ILabelArray];
   description: string;
   reminder: string;
+  thumbnailDataURI: string;
 }
 
 export interface IError {

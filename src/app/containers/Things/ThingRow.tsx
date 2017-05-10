@@ -12,8 +12,9 @@ class ThingRow extends React.Component<IProps, {}> {
     const {thing} = this.props;
     return (
       <tr>
-        <td>{thing.id}</td>
-        <td><Link to={'/thing/' + thing.id}>{thing.title}</Link></td>
+        <td><Link to={'/managethings/' + thing.id}>{thing.id}</Link></td>
+        <td><img src={thing.thumbnailDataURI}/></td>
+        <td>{thing.title}</td>
         <td>{thing.description}</td>
         <td>{this.showSelectedLabels(thing.selectedLabels)}</td>
         <td>{thing.reminder}</td>

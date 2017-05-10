@@ -29,46 +29,57 @@ class UserThings extends React.Component<any, any> {
   constructor(props, context) {
     super(props, context);
     this.state = {AddThingsState: {show: false}};
+    this.handleImageChange = this.handleImageChange.bind(this);
+    this.onAddThingClick = this.onAddThingClick.bind(this);
   }
 
   public componentWillReceiveProps(nextProps) {
     if (!nextProps.userThings.submitting) {
-      this.setState({AddThingsState: { show: false}});
+      this.setState({AddThingsState: {show: false}});
     }
   }
 
-  public render() {
-    const onAddThingClick = () => {
-      console.log('Uploading file:', this.state.AddThingsState);
-      const imageFile = {
-        filename: this.state.AddThingsState.file.name,
-        imageDataBase64: this.state.AddThingsState.imagePreviewUrl,
-        contentType: this.state.AddThingsState.file.type,
-      };
-      this.props.onAddThingsClick(imageFile);
-      //
+  private handleImageChange(e) {
+    e.preventDefault();
+
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        AddThingsState: {
+          show: true,
+          imagePreviewUrl: reader.result,
+          file,
+        },
+      });
     };
+    reader.readAsDataURL(file);
+  }
+
+  private onAddThingClick() {
+    // console.log('Uploading file:', this.state.AddThingsState);
+
+    const original: any = document.getElementById('thingThumbnail').children[0];
+    const canvas = document.createElement('canvas');
+    canvas.setAttribute('width', '300');
+    canvas.setAttribute('height', '300');
+    canvas.getContext('2d').drawImage(original, 0, 0, 300, 300);
+    const imgThumbBase64 = canvas.toDataURL('image/png');
+    console.log('image:', imgThumbBase64);
+    const imageFile = {
+      filename: this.state.AddThingsState.file.name,
+      imageDataBase64: imgThumbBase64,
+      contentType: this.state.AddThingsState.file.type,
+    };
+    this.props.onAddThingsClick(imageFile);
+    //
+  }
+
+  public render() {
 
     const close = () => {
       this.setState({AddThingsState: {show: false}});
-    };
-
-    const handleImageChange = (e) => {
-      e.preventDefault();
-
-      const reader = new FileReader();
-      const file = e.target.files[0];
-
-      reader.onloadend = () => {
-        this.setState({
-          AddThingsState: {
-            show: true,
-            imagePreviewUrl: reader.result,
-            file,
-          },
-        });
-      };
-      reader.readAsDataURL(file);
     };
 
     const onRefreshClick = () => {
@@ -85,7 +96,7 @@ class UserThings extends React.Component<any, any> {
     };
 
     const showError = () => {
-      if ( error !== null) {
+      if (error !== null) {
         return <div className="alert alert-danger">Error: {error.message}</div>;
       }
     };
@@ -108,13 +119,13 @@ class UserThings extends React.Component<any, any> {
             <Modal.Title id="contained-modal-title">Add User Things</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            {showLoading()}
             Thing Preview:
-            <Thumbnail href="#" alt="171x180" src={this.state.AddThingsState.imagePreviewUrl}/>
+            <Thumbnail id="thingThumbnail" href="#" alt="171x180" src={this.state.AddThingsState.imagePreviewUrl}/>
 
           </Modal.Body>
           <Modal.Footer>
-            {showLoading()}
-            <Button bsStyle="primary" onClick={onAddThingClick}>Submit</Button>&nbsp;
+            <Button bsStyle="primary" onClick={this.onAddThingClick}>Submit</Button>&nbsp;
             <Button bsStyle="default" onClick={close}>Cancel</Button>
           </Modal.Footer>
         </Modal>
@@ -132,7 +143,7 @@ class UserThings extends React.Component<any, any> {
           <label>
             <input id="imgFileInput" className={style.hidden}
                    type="file" label="Upload" accept="image/*" capture={true}
-                   onChange={handleImageChange} width={50}/>
+                   onChange={this.handleImageChange} width={50}/>
             <i className="fa fa-camera-retro fa-lg"/> Upload...
           </label>
         </form>

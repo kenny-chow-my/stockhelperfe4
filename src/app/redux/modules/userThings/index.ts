@@ -2,6 +2,9 @@ import {IError, IUserThingsAction} from '../../../models/userThing';
 import axios from 'axios';
 import {routerActions} from 'react-router-redux';
 
+const ROOT_URL = 'https://ninethingstockhelper.herokuapp.com/api/v1/things';
+// const ROOT_URL = 'http://localhost:8080/api/v1/things';
+
 export const UPDATE_USERTHING: string = 'UPDATE_USERTHING';
 
 export const GET_USERTHINGS_LOADING: string = 'GET_USERTHINGS_LOADING';
@@ -49,7 +52,6 @@ export function userThingReducer(state = initialState, action) {
 }
 
 /** Action Creator: Handles User Things */
-const ROOT_URL = 'https://ninethingstockhelper.herokuapp.com/api/v1/things';
 
 function actionErrorHelper(error): IError {
   const actionError: IError = {message: 'Unspecified error', code: 900 };

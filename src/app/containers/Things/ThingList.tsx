@@ -12,6 +12,7 @@ class ThingList extends React.Component<any, {}> {
           <thead>
           <tr>
             <th>ID</th>
+            <th>Thumbnail</th>
             <th>Title</th>
             <th>Description</th>
             <th>Labels</th>
