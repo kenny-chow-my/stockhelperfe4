@@ -16,6 +16,10 @@ export const ADD_USERTHINGS_LOADING: string = 'ADD_USERTHINGS_LOADING';
 export const ADD_USERTHINGS_SUCCESS: string = 'ADD_USERTHINGS_SUCCESS';
 export const ADD_USERTHINGS_FAILURE: string = 'ADD_USERTHINGS_FAILURE';
 
+export const SAVE_USERTHINGS_LOADING: string = 'SAVE_USERTHINGS_LOADING';
+export const SAVE_USERTHINGS_SUCCESS: string = 'SAVE_USERTHINGS_SUCCESS';
+export const SAVE_USERTHINGS_FAILURE: string = 'SAVE_USERTHINGS_FAILURE';
+
 // const userThingsList: [IUserThing] = [
 //   {id: '1', title: 'one', description: 'sometext', selectedLabels: 'str1, str2', reminder: ''},
 //   {id: '2', title: 'two', description: 'sometext2', selectedLabels: 'str3, str4', reminder: ''},
@@ -44,6 +48,13 @@ export function userThingReducer(state = initialState, action) {
       console.log('Add User Things Success: ', addUserThingsSuccess);
       return { ...state, userThingsList: addUserThingsSuccess, error: null, loading: false, submitting: false};
     case ADD_USERTHINGS_FAILURE: // return error and make loading = false
+      return { ...state, error: action.error, loading: false, submitting: false};
+
+    case SAVE_USERTHINGS_LOADING:
+      return { ...state, error: null, loading: true, submitting: true};
+    case SAVE_USERTHINGS_SUCCESS:
+      return { ...state, error: null, loading: false, submitting: false};
+    case SAVE_USERTHINGS_FAILURE:
       return { ...state, error: action.error, loading: false, submitting: false};
 
     default:
@@ -163,6 +174,54 @@ export function addUserThingsFailure(error): IUserThingsAction {
   const actionError: IError = actionErrorHelper(error);
   return {
     type: ADD_USERTHINGS_FAILURE,
+    error: actionError,
+  };
+}
+
+// Save user thing
+
+export function saveUserThingsLoading() {
+  return{
+    type: SAVE_USERTHINGS_LOADING,
+  };
+}
+
+export function saveUserThings(thing) {
+  return (dispatch) => {
+    // TODO: dispatch an action to set loading
+    console.log('saving thing', thing);
+    dispatch(saveUserThingsLoading());
+
+    axios({
+      method: 'put',
+      url: `${ROOT_URL}/`,
+      data: thing,
+    }).then( (response) => {
+      console.log('Response fetched from ' + ROOT_URL, response);
+
+      dispatch(saveUserThingsSuccess(response.data));
+      dispatch(routerActions.push('/userthings'));
+    })
+      .catch( (error) => {
+        dispatch(addUserThingsFailure(error));
+      });
+  };
+}
+
+export function saveUserThingsSuccess(newUserThing): IUserThingsAction {
+  console.log('Called saveUserThingsSuccess');
+
+  return {
+    type: SAVE_USERTHINGS_SUCCESS,
+    payload: newUserThing,
+  };
+}
+
+export function saveUserThingsFailure(error): IUserThingsAction {
+  console.log('Called saveUserThingsFailure', error);
+  const actionError: IError = actionErrorHelper(error);
+  return {
+    type: SAVE_USERTHINGS_FAILURE,
     error: actionError,
   };
 }
